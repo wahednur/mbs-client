@@ -1,12 +1,51 @@
-# React + Vite
+# 🏢 Apartment Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An advanced apartment management web application with Firebase Authentication, JWT Security, Role-Based Dashboards, and a Secure Payment Flow.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- User Authentication (Email/Password, Google Sign-In)
+- Role-based Access: User, Member, Admin
+- Apartment Listing with Search and Pagination
+- Rent Agreement Request System
+- Member Dashboard with Payment System
+- Admin Dashboard to Manage Members, Apartments, Coupons, Announcements
+- Coupon System for Payment Discounts
+- JWT Secured API Communication
+- Responsive Design (Mobile-Friendly)
+- Fully Deployed on Vercel (Client) & Render (Server)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Technologies Used
+
+### Frontend:
+
+- React 19
+- React Router DOM 6
+- Axios
+- Tanstack Query
+- Tailwind CSS
+- Firebase Authentication
+- Framer Motion (for Animations)
+
+### Backend:
+
+- Node.js
+- Express.js
+- MongoDB Atlas
+- JWT Authentication
+- Stripe (optional for real payments)
+
+---
+
+## 🛠️ Project Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-wahednur.git
+git clone https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-wahednur.git
+```
