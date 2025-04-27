@@ -1,7 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-txt-primary: var(--txt-primary);
+  --color-txt-secondary: var(--txt-secondary);
+  --color-btn: var(--btn);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
 :root {
-  --primary: #4f4f4f;
+  --primary: #2563eb;
+  --secondary: #4338ca;
+  --txt-primary: #111827;
+  --txt-secondary: #6b7280;
+  --btn: #d4402b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
 }
 .container {
   @apply mx-auto px-3 lg:px-0;
@@ -19,3 +37,22 @@
 .min-hight {
   @apply min-h-screen;
 }
+/* Button type css start  */
+.btn {
+  @apply flex items-center justify-center px-4 py-2 text-sm lg:text-base font-medium duration-300;
+}
+.btn-filled {
+  @apply bg-btn text-white rounded-md shadow-sm hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}
+.btn-outlined {
+  @apply border border-btn text-btn rounded-md shadow-sm hover:bg-btn hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}
+/* Button type css end  */
+/* Desktop navbar css start  */
+.desk-nav ul li a {
+  @apply text-txt-primary text-sm lg:text-base font-medium px-4 py-3.5 hover:text-primary duration-300 hover:border-b-2 hover:border-btn;
+}
+.desk-nav ul li a.active {
+  @apply text-primary border-b-2 border-btn;
+}
+/* Desktop navbar css end  */

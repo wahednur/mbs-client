@@ -1,6 +1,6 @@
-# 🏢 Apartment Management System
+# 🏢 Building Management System
 
-An advanced apartment management web application with Firebase Authentication, JWT Security, Role-Based Dashboards, and a Secure Payment Flow.
+An advanced Building Management System web application with Firebase Authentication, JWT Security, Role-Based Dashboards, and a Secure Payment Flow.
 
 ---
 
