@@ -20,6 +20,7 @@
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
+  --dark: #173575;
 }
 .container {
   @apply mx-auto px-3 lg:px-0;
@@ -35,14 +36,14 @@
   @apply flex flex-col items-center justify-center w-full h-screen;
 }
 .min-hight {
-  @apply min-h-screen;
+  @apply min-h-[calc(100vh-468px)];
 }
 /* Button type css start  */
 .btn {
   @apply flex items-center justify-center px-4 py-2 text-sm lg:text-base font-medium duration-300;
 }
 .btn-filled {
-  @apply bg-btn text-white rounded-md shadow-sm hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  @apply bg-btn text-white rounded-md shadow-sm hover:bg-primary focus:outline-none;
 }
 .btn-outlined {
   @apply border border-btn text-btn rounded-md shadow-sm hover:bg-btn hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
