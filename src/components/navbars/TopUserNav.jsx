@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaBars, FaUser } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import Button from "../shared/buttons/Button";
 import LinkBtn from "../shared/links/LinkBtn";
 const TopUserNav = () => {
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+  // setOpen(false) ousite click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <div className="relative">
       <div className="flex items-center gap-2 ">
@@ -11,11 +30,18 @@ const TopUserNav = () => {
         <button>
           <FaBars />
         </button>
-        <button className="bg-primary text-white cursor-pointer hover:bg-btn duration-300 flex items-center justify-center w-10 h-10 rounded-full">
+        <button
+          ref={buttonRef}
+          onClick={() => setOpen(!open)}
+          className={`user-nav`}
+        >
           <FaUser />
         </button>
       </div>
-      <div className="absolute top-12 right-0 w-[280px] bg-white p-5 drop-shadow-lg rounded-lg">
+      <div
+        ref={menuRef}
+        className={`user-nav-container ${open ? "open" : "-right-[1000px]"}`}
+      >
         <ul className="flex flex-col gap-2">
           <li>
             <NavLink to={"/dashboard"}>Dashboard</NavLink>
