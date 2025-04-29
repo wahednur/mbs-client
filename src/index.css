@@ -66,3 +66,18 @@
   @apply right-0;
 }
 /* Desktop navbar css end  */
+
+/* Mobile navbar css start */
+.mbl-nav {
+  @apply w-[280px] fixed top-14 -left-[300px] bg-primary h-screen duration-500 z-50;
+}
+.mbl-nav ul li a {
+  @apply text-white px-5 py-3.5 text-sm duration-300 hover:bg-secondary block;
+}
+.mbl-nav ul li a.active {
+  @apply bg-secondary;
+}
+.mbl-nav.open {
+  @apply left-0;
+}
+/* Mobile navbar css end */

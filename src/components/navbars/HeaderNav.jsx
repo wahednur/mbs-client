@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const HeaderNav = () => {
+const HeaderNav = ({ mblOpen }) => {
   const navItems = (
     <>
       <li>
@@ -19,6 +19,11 @@ const HeaderNav = () => {
         <ul className="flex items-center">{navItems}</ul>
       </div>
       {/* Desktop navbar end  */}
+      {/* Mobile navbar start  */}
+      <div className={`mbl-nav ${mblOpen ? "open" : ""}`}>
+        <ul>{navItems}</ul>
+      </div>
+      {/* Mobile navbar end  */}
     </>
   );
 };

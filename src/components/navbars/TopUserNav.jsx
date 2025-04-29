@@ -3,8 +3,9 @@ import { FaBars, FaUser } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import Button from "../shared/buttons/Button";
 import LinkBtn from "../shared/links/LinkBtn";
-const TopUserNav = () => {
+const TopUserNav = ({ setMblOpen, mblOpen }) => {
   const [open, setOpen] = useState(false);
+
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
   // setOpen(false) ousite click
@@ -27,7 +28,7 @@ const TopUserNav = () => {
     <div className="relative">
       <div className="flex items-center gap-2 ">
         <LinkBtn title={"Login"} link={"login"} btnType={"btn-filled"} />
-        <button>
+        <button onClick={() => setMblOpen(!mblOpen)} className="lg:hidden">
           <FaBars />
         </button>
         <button
