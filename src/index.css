@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -9,6 +10,10 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
+
+  /* Fonts  */
+  --font-roboto: var(--roboto);
+  --font-poppins: var(--poppins);
 }
 
 :root {
@@ -21,15 +26,19 @@
   --warning: #f59e0b;
   --danger: #ef4444;
   --dark: #173575;
+
+  /* Fonts */
+  --poppins: "Poppins", sans-serif;
+  --roboto: "Roboto", sans-serif;
 }
 .container {
   @apply mx-auto px-3 lg:px-0;
 }
 .frm-ctr {
-  @apply flex flex-col items-center justify-center px-5 py-3 w-full;
+  @apply flex flex-col items-center justify-center px-5 py-3 w-full outline-0 bg-gray-100 rounded-md;
 }
 .collum {
-  @apply flex flex-col w-full;
+  @apply flex flex-col w-full text-left mb-5;
 }
 
 .middle {
@@ -81,3 +90,9 @@
   @apply left-0;
 }
 /* Mobile navbar css end */
+
+/* Heading and title css start  */
+.heading {
+  @apply text-txt-primary text-2xl lg:text-3xl font-semibold font-poppins;
+}
+/* Heading and title css end  */
