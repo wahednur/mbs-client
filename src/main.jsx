@@ -3,6 +3,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import { RouterProvider } from "react-router-dom";
+import { Toaster } from "sonner";
 import "./index.css";
 import AuthProvider from "./provider/AuthProvider.jsx";
 import router from "./routes/Routes.jsx";
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")).render(
           <RouterProvider router={router} />
         </AuthProvider>
       </QueryClientProvider>
+      <Toaster richColors />
     </HelmetProvider>
   </StrictMode>
 );

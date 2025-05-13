@@ -46,6 +46,6 @@ An advanced Building Management System web application with Firebase Authenticat
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-wahednur.git
-git clone https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-wahednur.git
+git clone https://github.com/wahednur/mbs-client.git
+git clone https://github.com/wahednur/mbs-server.git
 ```
