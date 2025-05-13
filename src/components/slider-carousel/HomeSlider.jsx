@@ -37,10 +37,11 @@ const HomeSlider = () => {
               <div className="text-center space-y-5 bg-black/30 p-10 rounded-2xl">
                 {" "}
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
-                  WS Building Management System
+                  Multi-Building Management
                 </h1>
                 <h2 className="text-2xl text-white font-bold">
-                  A world class bulding management software
+                  Track all your buildings and their flats, occupancy status,
+                  and rent collection — all in one place.
                 </h2>
               </div>
             </div>
@@ -57,10 +58,11 @@ const HomeSlider = () => {
               <div className="text-center space-y-5 bg-black/30 p-10 rounded-2xl">
                 {" "}
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
-                  WS Building Management System
+                  Real-Time Rent Dashboard
                 </h1>
                 <h2 className="text-2xl text-white font-bold">
-                  A world class bulding management software
+                  Know which flats are vacant, rented, or overdue — with
+                  real-time rent collection summary.
                 </h2>
               </div>
             </div>
@@ -77,10 +79,11 @@ const HomeSlider = () => {
               <div className="text-center space-y-5 bg-black/30 p-10 rounded-2xl">
                 {" "}
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
-                  WS Building Management System
+                  Tenant Management System
                 </h1>
                 <h2 className="text-2xl text-white font-bold">
-                  A world class bulding management software
+                  Store tenant information, rent history, and communication
+                  records securely.
                 </h2>
               </div>
             </div>
@@ -97,10 +100,11 @@ const HomeSlider = () => {
               <div className="text-center space-y-5 bg-black/30 p-10 rounded-2xl">
                 {" "}
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
-                  WS Building Management System
+                  Automated Billing & Reminders
                 </h1>
                 <h2 className="text-2xl text-white font-bold">
-                  A world class bulding management software
+                  Send monthly rent bills and reminders automatically to tenants
+                  via email or SMS.
                 </h2>
               </div>
             </div>
@@ -117,10 +121,11 @@ const HomeSlider = () => {
               <div className="text-center space-y-5 bg-black/30 p-10 rounded-2xl">
                 {" "}
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-white">
-                  WS Building Management System
+                  Location-Based Insights
                 </h1>
                 <h2 className="text-2xl text-white font-bold">
-                  A world class bulding management software
+                  See which area is performing well, with rent price
+                  distribution and occupancy trends.
                 </h2>
               </div>
             </div>

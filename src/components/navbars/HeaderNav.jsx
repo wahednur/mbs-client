@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const HeaderNav = ({ mblOpen }) => {
@@ -15,7 +14,7 @@ const HeaderNav = ({ mblOpen }) => {
   return (
     <>
       {/* Desktop navbar start  */}
-      <div className="desk-nav hidden lg:block">
+      <div className="desk-nav hidden lg:block py-4">
         <ul className="flex items-center">{navItems}</ul>
       </div>
       {/* Desktop navbar end  */}

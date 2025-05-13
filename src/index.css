@@ -49,7 +49,7 @@
 }
 /* Button type css start  */
 .btn {
-  @apply flex items-center justify-center px-4 py-2 text-sm lg:text-base font-medium duration-300;
+  @apply flex items-center justify-center px-4 py-2 text-sm lg:text-base cursor-pointer font-medium duration-300;
 }
 .btn-filled {
   @apply bg-btn text-white rounded-md shadow-sm hover:bg-primary focus:outline-none;
@@ -96,3 +96,12 @@
   @apply text-txt-primary text-2xl lg:text-3xl font-semibold font-poppins;
 }
 /* Heading and title css end  */
+.mt {
+  @apply mt-10 md:mt-14 lg:mt-20;
+}
+.hero-title {
+  @apply text-3xl md:text-4xl lg:text-6xl font-bold;
+}
+.hero-sub-title {
+  @apply text-xl md:text-2xl font-semibold mt-6;
+}
