@@ -1,6 +1,6 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/shared/buttons/Button";
+import SocialLogin from "../../components/social-login/SocialLogin";
 
 const Login = () => {
   return (
@@ -17,18 +17,9 @@ const Login = () => {
             <div className="w-full">
               <form>
                 <div className="collum">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Enter your name"
-                    className="frm-ctr"
-                  />
-                </div>
-                <div className="collum">
                   <label htmlFor="email">Email</label>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Enter your email"
                     className="frm-ctr"
@@ -37,7 +28,7 @@ const Login = () => {
                 <div className="collum">
                   <label htmlFor="password">Password</label>
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter your password"
                     className="frm-ctr"
@@ -50,7 +41,7 @@ const Login = () => {
                   submit={`submit`}
                 />
               </form>
-              <p>
+              <p className="mt-6">
                 You have no account?{" "}
                 <Link
                   className="text-primary hover:text-secondary duration-300"
@@ -59,6 +50,9 @@ const Login = () => {
                   Sign up now
                 </Link>
               </p>
+              <div>
+                <SocialLogin />
+              </div>
             </div>
           </div>
         </div>

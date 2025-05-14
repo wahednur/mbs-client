@@ -24,8 +24,6 @@ const HomeSlider = () => {
       }}
       navigation={true}
       modules={[Pagination, Navigation, Autoplay]}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       <SwiperSlide>
         <div

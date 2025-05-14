@@ -1,8 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import Button from "../../components/shared/buttons/Button";
+import SocialLogin from "../../components/social-login/SocialLogin";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
+import { imageUpload } from "../../utils/utils";
+import useAuth from "./../../hooks/useAuth";
 
 const Register = () => {
+  const { user, setUser, createUser, updateUser, loading } = useAuth();
+  const [error, setError] = useState(null);
+  const [prevImg, setPrevImg] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const axiosCommon = useAxiosCommon();
+  const handleCreateUser = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.image.files[0];
+    const email = form.email.value;
+    const password = form.password.value;
+    const img_url = await imageUpload(photo);
+    if (password.length < 6) {
+      return setError("Password must be at least 6 characters log");
+    }
+    if (!/[a-z]/.test(password)) {
+      return setError("Password must contain at least one lowercase letter");
+    }
+    if (!/[A-Z]/.test(password)) {
+      return setError("Password must contain at least one uppercase letter");
+    }
+    if (!/[0-9]/.test(password)) {
+      return setError("Password must contain at least one number");
+    }
+    if (!/[@$!%*?&]/.test(password)) {
+      return setError("Password must contain at least one special character");
+    }
+    try {
+      const result = await createUser(email, password);
+      await updateUser(name, photo);
+      setUser({ ...result?.user, displayName: name, photoURL: img_url });
+      const newUser = {
+        name,
+        email,
+        image: img_url,
+      };
+      await axiosCommon.post(`/users`, newUser);
+      navigate(location?.state || "/");
+      toast(`Welcom ${name}`);
+    } catch (error) {
+      toast.error(error.message);
+    }
+    console.table({ name, photo: img_url, email, password });
+  };
+  if (user) return navigate(location?.state || "/");
+  if (user || loading) return null;
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="container  rounded-lg">
@@ -21,7 +74,7 @@ const Register = () => {
             </div>
             <h4 className="heading">Please register your account</h4>
             <div className="w-full">
-              <form>
+              <form onSubmit={handleCreateUser}>
                 <div className="collum">
                   <label htmlFor="name">Name</label>
                   <input
@@ -32,11 +85,11 @@ const Register = () => {
                   />
                 </div>
                 <div className="collum">
-                  <label
-                    htmlFor="image"
-                    className="block mb-2 text-sm bg-primary/80 text-white p-2 rounded-md text-center"
-                  >
-                    Select Image:
+                  <label htmlFor="image">
+                    <span className="block mb-2 text-sm bg-primary/80 text-white p-2 rounded-md text-center">
+                      Select Image:
+                    </span>
+                    <img className="w-24 mx-auto mt-6" src={prevImg} alt="" />
                   </label>
                   <input
                     required
@@ -44,12 +97,15 @@ const Register = () => {
                     id="image"
                     name="image"
                     accept="image/*"
+                    onChange={(e) =>
+                      setPrevImg(URL.createObjectURL(e.target.files[0]))
+                    }
                   />
                 </div>
                 <div className="collum">
                   <label htmlFor="email">Email</label>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     placeholder="Enter your email"
                     className="frm-ctr"
@@ -58,14 +114,15 @@ const Register = () => {
                 <div className="collum">
                   <label htmlFor="password">Password</label>
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter your password"
                     className="frm-ctr"
                   />
+                  {error && <p className="text-red-500">{error}</p>}
                 </div>
                 <Button
-                  title={`Login`}
+                  title={`Sign Up`}
                   btnType={`btn-filled`}
                   className={`w-full`}
                   submit={`submit`}
@@ -80,6 +137,9 @@ const Register = () => {
                   Sign in now
                 </Link>
               </p>
+              <div>
+                <SocialLogin />
+              </div>
             </div>
           </div>
         </div>
