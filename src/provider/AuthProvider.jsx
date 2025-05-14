@@ -79,6 +79,7 @@ const AuthProvider = ({ children }) => {
       const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
         setUser(currentUser);
         setLoading(false);
+        console.log("Current user ==>", currentUser);
         if (currentUser) {
           //get token and store client
           const userInfo = { email: currentUser?.email };
@@ -98,7 +99,7 @@ const AuthProvider = ({ children }) => {
       return () => unsubscribe();
     };
     checkAuthStatus();
-  }, [user?.email]);
+  }, [axiosCommon]);
 
   const authInfo = {
     user,
@@ -111,7 +112,6 @@ const AuthProvider = ({ children }) => {
     loginUser,
     updateUser,
   };
-  console.log(user);
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

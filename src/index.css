@@ -69,7 +69,7 @@
   @apply bg-primary text-white cursor-pointer hover:bg-btn duration-300 flex items-center justify-center w-10 h-10 rounded-full;
 }
 .user-nav-container {
-  @apply absolute top-12 w-[280px] bg-white p-5 drop-shadow-lg rounded-lg duration-500 z-50;
+  @apply absolute top-12 w-[280px] bg-white p-5 drop-shadow-lg rounded-lg duration-500 z-50 flex flex-col space-y-5;
 }
 .user-nav-container.open {
   @apply right-0;

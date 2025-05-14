@@ -39,7 +39,7 @@ const Register = () => {
     }
     try {
       const result = await createUser(email, password);
-      await updateUser(name, photo);
+      await updateUser(name, img_url);
       setUser({ ...result?.user, displayName: name, photoURL: img_url });
       const newUser = {
         name,
