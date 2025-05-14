@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { FaBars, FaUser } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import Button from "../shared/buttons/Button";
 import LinkBtn from "../shared/links/LinkBtn";
-const TopUserNav = ({ setMblOpen, mblOpen }) => {
-  const { user, logOut } = useAuth();
+import LogOut from "../shared/log-out/LogOut";
+const TopUserNav = ({ setMblOpen, mblOpen, dahHide }) => {
+  const { user } = useAuth();
   const [open, setOpen] = useState(false);
 
   const menuRef = useRef(null);
@@ -34,25 +34,30 @@ const TopUserNav = ({ setMblOpen, mblOpen }) => {
         ) : (
           <LinkBtn title={"Login"} link={"login"} btnType={"btn-filled"} />
         )}
-        <button onClick={() => setMblOpen(!mblOpen)} className="lg:hidden">
+        <button
+          onClick={() => setMblOpen(!mblOpen)}
+          className={`lg:hidden ${dahHide}`}
+        >
           <FaBars />
         </button>
-        <button
-          ref={buttonRef}
-          onClick={() => setOpen(!open)}
-          className={`user-nav`}
-        >
-          {user?.email ? (
-            <img
-              className="w-10 h-10 rounded-full"
-              src={user?.photoURL}
-              alt={user?.displayName}
-              referrerPolicy="no-referrer"
-            />
-          ) : (
-            <FaUser />
-          )}
-        </button>
+        {user && (
+          <button
+            ref={buttonRef}
+            onClick={() => setOpen(!open)}
+            className={`user-nav`}
+          >
+            {user?.email ? (
+              <img
+                className="w-10 h-10 rounded-full"
+                src={user?.photoURL}
+                alt={user?.displayName}
+                referrerPolicy="no-referrer"
+              />
+            ) : (
+              <FaUser />
+            )}
+          </button>
+        )}
       </div>
       <div
         ref={menuRef}
@@ -88,11 +93,7 @@ const TopUserNav = ({ setMblOpen, mblOpen }) => {
         </ul>
         <hr className="text-gray-400" />
         {user?.email ? (
-          <Button
-            clickEvent={async () => await logOut()}
-            title={`Log out`}
-            btnType={`btn-filled`}
-          />
+          <LogOut />
         ) : (
           <LinkBtn title={"Login"} link={"login"} btnType={"btn-filled"} />
         )}

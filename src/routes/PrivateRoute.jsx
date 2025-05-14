@@ -9,7 +9,7 @@ const PrivateRoute = ({ children }) => {
 
   if (loading) return <LoadingSpiner />;
   if (user) return children;
-  return <Navigate to="/" state={{ from: location }} />;
+  return <Navigate to="/login" state={{ from: location }} />;
 };
 
 PrivateRoute.propTypes = {

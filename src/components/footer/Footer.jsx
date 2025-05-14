@@ -91,7 +91,7 @@ const Footer = () => {
                 <div className="flex gap-2">
                   <a
                     className="text-xl text-gray-400 hover:text-btn transition-all duration-300"
-                    href="http://facebook.com"
+                    href="http://facebook.com/wahednur"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -99,7 +99,7 @@ const Footer = () => {
                   </a>
                   <a
                     className="text-xl text-gray-400 hover:text-btn transition-all duration-300"
-                    href="http://facebook.com"
+                    href="https://x.com/wahednur"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -107,7 +107,7 @@ const Footer = () => {
                   </a>
                   <a
                     className="text-xl text-gray-400 hover:text-btn transition-all duration-300"
-                    href="http://facebook.com"
+                    href="https://www.linkedin.com/in/wahednur"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
