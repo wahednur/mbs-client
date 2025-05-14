@@ -87,11 +87,15 @@ const TopUserNav = ({ setMblOpen, mblOpen }) => {
           </li>
         </ul>
         <hr className="text-gray-400" />
-        <Button
-          clickEvent={async () => await logOut()}
-          title={`Log out`}
-          btnType={`btn-filled`}
-        />
+        {user?.email ? (
+          <Button
+            clickEvent={async () => await logOut()}
+            title={`Log out`}
+            btnType={`btn-filled`}
+          />
+        ) : (
+          <LinkBtn title={"Login"} link={"login"} btnType={"btn-filled"} />
+        )}
       </div>
     </div>
   );

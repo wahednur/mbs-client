@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       return await signInWithPopup(auth, googleProvider);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
