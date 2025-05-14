@@ -1,8 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import Button from "../../components/shared/buttons/Button";
+import LoadingSpiner from "../../components/shared/loading/LoadingSpiner";
 import SocialLogin from "../../components/social-login/SocialLogin";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { user, loading, loginUser } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.form?.pathname || "/";
+
+  const hadleLogin = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    try {
+      await loginUser(email, password);
+      navigate(from, { replace: true });
+      toast.success(
+        <p>
+          <span>{user?.displayName} </span>Loging successfully
+        </p>
+      );
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+  if (loading) return <LoadingSpiner />;
+  if (user?.email || loading) return navigate(from, { replace: true });
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="container bg-[url(/img/login.jpg)] bg-cover bg-center bg-no-repeat  rounded-lg">
@@ -15,7 +42,7 @@ const Login = () => {
             </div>
             <h4 className="heading">User Login</h4>
             <div className="w-full">
-              <form>
+              <form onSubmit={hadleLogin}>
                 <div className="collum">
                   <label htmlFor="email">Email</label>
                   <input

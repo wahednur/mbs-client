@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import Button from "../../components/shared/buttons/Button";
+import LoadingSpiner from "../../components/shared/loading/LoadingSpiner";
 import SocialLogin from "../../components/social-login/SocialLogin";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { imageUpload } from "../../utils/utils";
@@ -13,6 +14,7 @@ const Register = () => {
   const [prevImg, setPrevImg] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const from = location?.state?.form?.pathname || "/";
   const axiosCommon = useAxiosCommon();
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -47,15 +49,15 @@ const Register = () => {
         image: img_url,
       };
       await axiosCommon.post(`/users`, newUser);
-      navigate(location?.state || "/");
+      navigate(from, { replace: true });
       toast(`Welcom ${name}`);
     } catch (error) {
       toast.error(error.message);
     }
     console.table({ name, photo: img_url, email, password });
   };
-  if (user) return navigate(location?.state || "/");
-  if (user || loading) return null;
+  if (loading) return <LoadingSpiner />;
+  if (user?.email || loading) return navigate(from, { replace: true });
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="container  rounded-lg">

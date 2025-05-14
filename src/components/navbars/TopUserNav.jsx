@@ -72,25 +72,26 @@ const TopUserNav = ({ setMblOpen, mblOpen }) => {
           <div className="flex flex-col justify-center">
             <p className="font-semibold">{user?.displayName}</p>
             <small className="text-xs">{user?.email}</small>
-            <span>{user?.role}</span>
+            {user?.role && (
+              <span className="text-xs p-1 bg-success">{user?.role}</span>
+            )}
           </div>
         </div>
         <hr className="text-gray-400" />
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col">
           <li>
             <NavLink to={"/dashboard"}>Dashboard</NavLink>
           </li>
           <li>
             <NavLink to={"/my-profile"}>My Profile</NavLink>
           </li>
-          <li>
-            <Button
-              clickEvent={async () => await logOut()}
-              title={`Log out`}
-              btnType={`btn-filled`}
-            />
-          </li>
         </ul>
+        <hr className="text-gray-400" />
+        <Button
+          clickEvent={async () => await logOut()}
+          title={`Log out`}
+          btnType={`btn-filled`}
+        />
       </div>
     </div>
   );
