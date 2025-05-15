@@ -4,6 +4,7 @@ import RootLayout from "../layouts/RootLayout";
 import Apartment from "../pages/apartment/Apartment";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import AddApartment from "../pages/dashboard/admin/apartment/AddApartment";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/public/home/HomePage";
 import PrivateRoute from "./PrivateRoute";
@@ -38,6 +39,12 @@ const router = createBrowserRouter([
         <DashLayout />
       </PrivateRoute>
     ),
+    children: [
+      {
+        path: "add-apartment",
+        element: <AddApartment />,
+      },
+    ],
   },
 ]);
 

@@ -5,12 +5,12 @@ import TopUserNav from "../components/navbars/TopUserNav";
 import DashSidebar from "../components/sidebaar/DashSidebar";
 
 const DashLayout = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
-    <div className="flex overflow-hidden">
+    <div className="flex overflow-hidden bg-gray-100">
       <div
         className={`${
-          open ? "w-[280px] opacity-100" : "w-0 opacity-0"
+          open ? "w-[280px] opacity-100" : "-ml-[285px]"
         } duration-500`}
       >
         <DashSidebar />
@@ -31,7 +31,7 @@ const DashLayout = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="p-6">
           <Outlet />
         </div>
       </div>

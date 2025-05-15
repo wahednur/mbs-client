@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { FaBars, FaUser } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 import LinkBtn from "../shared/links/LinkBtn";
 import LogOut from "../shared/log-out/LogOut";
 const TopUserNav = ({ setMblOpen, mblOpen, dahHide }) => {
   const { user } = useAuth();
+  const [role] = useRole();
   const [open, setOpen] = useState(false);
 
   const menuRef = useRef(null);
@@ -77,15 +79,21 @@ const TopUserNav = ({ setMblOpen, mblOpen, dahHide }) => {
           <div className="flex flex-col justify-center">
             <p className="font-semibold">{user?.displayName}</p>
             <small className="text-xs">{user?.email}</small>
-            {user?.role && (
-              <span className="text-xs p-1 bg-success">{user?.role}</span>
+            {role && (
+              <div>
+                <span className="text-xs p-1 px-2 text-white capitalize bg-success">
+                  {role}
+                </span>
+              </div>
             )}
           </div>
         </div>
         <hr className="text-gray-400" />
         <ul className="flex flex-col">
           <li>
-            <NavLink to={"/dashboard"}>Dashboard</NavLink>
+            <NavLink to={"/dashboard"} className="capitalize">
+              {role} Dashborad
+            </NavLink>
           </li>
           <li>
             <NavLink to={"/my-profile"}>My Profile</NavLink>

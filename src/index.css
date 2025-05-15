@@ -115,3 +115,18 @@
 .social-btn {
   @apply flex justify-center items-center p-3 bg-primary text-white rounded-full text-xl hover:bg-txt-primary duration-300 cursor-pointer;
 }
+.ps-submenu-content.ps-open.css-18unl23 {
+  @apply bg-white/30;
+}
+
+a.ps-menu-button.ps-open,
+.css-16jesut > .ps-menu-button:hover,
+.css-1t8x7v1 > .ps-menu-button:hover {
+  background-color: var(--primary) !important;
+  @apply duration-300;
+}
+
+a.ps-menu-button.active,
+a.ps-menu-button:hover {
+  background-color: #5688f5 !important;
+}
