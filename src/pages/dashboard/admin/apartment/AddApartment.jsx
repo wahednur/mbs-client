@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import Button from "../../../../components/shared/buttons/Button";
+import DashSiteTitle from "../../../../components/shared/site-title/DashSiteTitle";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useCitiData from "../../../../hooks/useCitiData";
@@ -77,6 +78,7 @@ const AddApartment = () => {
 
   return (
     <div className="w-full bg-white p-5 rounded-xl">
+      <DashSiteTitle title={"Add apartment"} />
       <h2 className="text-2xl md:text-3xl font-bold text-center">
         Add apartment
       </h2>

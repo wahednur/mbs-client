@@ -18,7 +18,7 @@ const AdminMenu = () => {
           <MenuItem component={<NavLink to={"/dashboard/flat-list"} />}>
             Flat List
           </MenuItem>
-          <MenuItem component={<NavLink to={"/dashboard/add-flats"} />}>
+          <MenuItem component={<NavLink to={"/dashboard/add-flat"} />}>
             Add Flat
           </MenuItem>
         </SubMenu>

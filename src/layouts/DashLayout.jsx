@@ -15,7 +15,7 @@ const DashLayout = () => {
       >
         <DashSidebar />
       </div>
-      <div className="flex-1">
+      <div className={`${open ? "w-[calc(100%-280px)]" : "w-full"}`}>
         <div className="w-full border-b border-b-gray-500 h-14 md:h-[88.4px] shadow-md ">
           <div className="flex justify-between items-center h-full w-full">
             <div className="h-full flex justify-between items-center w-14">
@@ -31,7 +31,7 @@ const DashLayout = () => {
             </div>
           </div>
         </div>
-        <div className="p-6">
+        <div className="p-6 overflow-x-auto">
           <Outlet />
         </div>
       </div>

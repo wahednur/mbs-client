@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { Helmet } from "react-helmet-async";
 
 const SiteTitle = ({ title }) => {
-  return <Helmet>{title} | WS Building Management System</Helmet>;
+  return (
+    <Helmet>
+      <title>{title} | WS Building Management System</title>
+    </Helmet>
+  );
 };
 
 SiteTitle.propTypes = {

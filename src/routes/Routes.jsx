@@ -5,8 +5,11 @@ import Apartment from "../pages/apartment/Apartment";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import AddApartment from "../pages/dashboard/admin/apartment/AddApartment";
+import ApartmentList from "../pages/dashboard/admin/apartment/ApartmentList";
+import AddFlat from "../pages/dashboard/admin/flats/AddFlat";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/public/home/HomePage";
+import AdminRoutes from "./AdminRoutes";
 import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
@@ -42,7 +45,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "add-apartment",
-        element: <AddApartment />,
+        element: (
+          <AdminRoutes>
+            <AddApartment />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "apartment-list",
+        element: (
+          <AdminRoutes>
+            <ApartmentList />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "add-flat",
+        element: (
+          <AdminRoutes>
+            <AddFlat />
+          </AdminRoutes>
+        ),
       },
     ],
   },

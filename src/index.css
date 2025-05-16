@@ -130,3 +130,9 @@ a.ps-menu-button.active,
 a.ps-menu-button:hover {
   background-color: #5688f5 !important;
 }
+.sm-w {
+  @apply w-24 md:w-28;
+}
+.dash-title {
+  @apply text-2xl md:text-3xl lg:text-4xl font-bold font-poppins mx-auto text-center;
+}
