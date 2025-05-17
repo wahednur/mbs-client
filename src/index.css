@@ -136,3 +136,6 @@ a.ps-menu-button:hover {
 .dash-title {
   @apply text-2xl md:text-3xl lg:text-4xl font-bold font-poppins mx-auto text-center;
 }
+.w-c {
+  @apply w-36;
+}

@@ -22,6 +22,14 @@ const AdminMenu = () => {
             Add Flat
           </MenuItem>
         </SubMenu>
+        <SubMenu label="Coupons">
+          <MenuItem component={<NavLink to={"/dashboard/coupons"} />}>
+            Coupons
+          </MenuItem>
+          <MenuItem component={<NavLink to={"/dashboard/add-coupon"} />}>
+            Add Coupon
+          </MenuItem>
+        </SubMenu>
         <MenuItem> Documentation </MenuItem>
         <MenuItem> Calendar </MenuItem>
       </Menu>

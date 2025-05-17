@@ -96,7 +96,7 @@ const TopUserNav = ({ setMblOpen, mblOpen, dahHide }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/my-profile"}>My Profile</NavLink>
+            <NavLink to={"/dashboard/my-profile"}>My Profile</NavLink>
           </li>
         </ul>
         <hr className="text-gray-400" />
