@@ -60,6 +60,7 @@ const AddFlat = () => {
       await axiosSecure.post(`/flats/${user?.email}`, newFlat);
       toast.success(`Flat added successfully`);
       form.reset();
+      setPrevImg("");
     } catch (error) {
       console.log(error);
     }

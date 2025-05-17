@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import DashLayout from "../layouts/DashLayout";
 import RootLayout from "../layouts/RootLayout";
 import Apartment from "../pages/apartment/Apartment";
+import FlatDetails from "../pages/apartment/FlatDetails";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import AddApartment from "../pages/dashboard/admin/apartment/AddApartment";
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/apartment",
         element: <Apartment />,
+      },
+      {
+        path: "/apertment/:id",
+        element: <FlatDetails />,
       },
     ],
   },

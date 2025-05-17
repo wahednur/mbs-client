@@ -13,9 +13,9 @@ const AddApartment = () => {
   const [cityCorp, setCityCorp] = useState("Dhaka North");
   const [area, setArea] = useState("");
   const [gas, setGas] = useState("");
-  const [electicity, setElecticity] = useState("");
+  const [electricity, setElectricity] = useState("");
   const [lift, setLift] = useState("");
-  const [genarator, setGenarator] = useState("");
+  const [generator, setGenerator] = useState("");
   const [prevImg, setPrevImg] = useState("");
 
   const cityCorps = [
@@ -33,7 +33,7 @@ const AddApartment = () => {
     // const cityCorporation = cityCorp
     // const area = area
     const road = form.road.value;
-    const appartmentNo = form.appartmentNo.value;
+    const apartmentNo = form.apartmentNo.value;
     const description = form.description.value;
     // const gas = form.name.value;
     // const elec = form.name.value;
@@ -50,11 +50,11 @@ const AddApartment = () => {
       cityCorp,
       area,
       road,
-      appartmentNo,
+      apartmentNo,
       description,
       gas,
-      electicity,
-      genarator,
+      electricity,
+      generator,
       lift,
       garage,
       image,
@@ -71,6 +71,8 @@ const AddApartment = () => {
           <span className="text-primary">{name} </span> Added Successfully
         </p>
       );
+      form.reset();
+      setPrevImg("");
     } catch (error) {
       toast.error(error);
     }
@@ -158,10 +160,10 @@ const AddApartment = () => {
                   />
                 </div>
                 <div className="collum">
-                  <label htmlFor="appartmentNo">Apartment No</label>
+                  <label htmlFor="apartmentNo">Apartment No</label>
                   <input
                     type="text"
-                    name="appartmentNo"
+                    name="apartmentNo"
                     placeholder="Apartment number"
                     className="frm-ctr"
                     required
@@ -195,7 +197,7 @@ const AddApartment = () => {
                 <label htmlFor="elect">Electricity</label>
                 <select
                   name="elect"
-                  onChange={(e) => setElecticity(e.target.value)}
+                  onChange={(e) => setElectricity(e.target.value)}
                   className="frm-ctr"
                 >
                   <option>Post Paid</option>
@@ -205,10 +207,10 @@ const AddApartment = () => {
             </div>
             <div className="flex gap-6">
               <div className="collum">
-                <label htmlFor="genarator">Genarator</label>
+                <label htmlFor="generator">Generator</label>
                 <select
                   name="ganarator"
-                  onChange={(e) => setGenarator(e.target.value)}
+                  onChange={(e) => setGenerator(e.target.value)}
                   className="frm-ctr"
                 >
                   <option>Yes</option>
