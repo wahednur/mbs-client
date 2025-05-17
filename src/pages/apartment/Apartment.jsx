@@ -63,7 +63,7 @@ const Apartment = () => {
       </div>
 
       {/* Apartment Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 ">
         {flatMap.map((flat) => (
           <FlatCard key={flat?._id} flat={flat} />
         ))}
@@ -80,13 +80,13 @@ const Apartment = () => {
             pageRangeDisplayed={3}
             pageCount={data.totalPages || 1}
             forcePage={page}
-            containerClassName="flex justify-center gap-2 mt-6"
-            pageClassName="px-3 py-1 border rounded "
-            activeClassName="bg-primary text-white"
-            previousClassName={`px-3 py-1 border rounded bg-primary text-white ${
+            containerClassName="flex justify-center gap-2 mt-6 text-xl"
+            pageClassName="px-3 py-1 border rounded cursor-pointer hover:bg-primary duration-300 hover:text-white  "
+            activeClassName="bg-primary text-white "
+            previousClassName={`px-3 py-1 border rounded bg-primary text-white cursor-pointer hover:bg-primary duration-300 hover:text-white ${
               page === 0 ? "opacity-50 cursor-not-allowed bg-gray-300" : ""
             }`}
-            nextClassName={`px-3 py-1 border rounded bg-primary text-white ${
+            nextClassName={`px-3 py-1 border rounded bg-primary text-white cursor-pointer hover:bg-primary duration-300 hover:text-white ${
               page + 1 === data.totalPages
                 ? "opacity-50 cursor-not-allowed bg-gray-300"
                 : "bg-primary"
