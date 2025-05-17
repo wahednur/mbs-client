@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import useRole from "../../hooks/useRole";
+import MemberMenu from "../dashboard/menus/MemberMenu";
+import UserMenu from "../dashboard/menus/UserMenu";
 import LogOut from "../shared/log-out/LogOut";
 import AdminMenu from "./../dashboard/menus/AdminMenu";
 
@@ -18,6 +20,8 @@ const DashSidebar = () => {
             {role} Dashboard
           </h2>{" "}
           {role === "admin" && <AdminMenu />}
+          {role === "user" && <UserMenu />}
+          {role === "member" && <MemberMenu />}
         </div>
       </div>
       <div className="px-5 relative bottom-10 w-full">

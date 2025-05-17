@@ -1,16 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
+import ReactPaginate from "react-paginate";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import LoadingSpiner from "./../../components/shared/loading/LoadingSpiner";
 import FlatCard from "./FlatCard";
 const Apartment = () => {
   const axiosCommon = useAxiosCommon();
   const [searchFlat, setSearchFlat] = useState();
-  const { data: flats = [], isLoading } = useQuery({
-    queryKey: ["flats"],
+  const [page, setPage] = useState(0); // starts from 0
+  const flatsPerPage = 6;
+
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ["flats", page],
     queryFn: async () => {
-      const { data } = await axiosCommon("/flats");
+      const { data } = await axiosCommon.get("/flats", {
+        params: { page: page + 1, limit: flatsPerPage },
+      });
       return data;
     },
   });
@@ -28,11 +34,12 @@ const Apartment = () => {
     setSearchFlat(data);
   };
 
-  const flatMap = searchFlat ?? flats;
-  // console.log(searchFlat.length);
+  const flatMap = searchFlat ?? data.flats ?? [];
+
   if (isLoading) return <LoadingSpiner />;
   return (
     <div className="container">
+      {/* Search form */}
       <div className="flex items-center justify-center mt-10">
         <form onSubmit={handleSearch}>
           <div className="flex justify-between items-center gap-6">
@@ -54,11 +61,40 @@ const Apartment = () => {
           </div>
         </form>
       </div>
+
+      {/* Apartment Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         {flatMap.map((flat) => (
           <FlatCard key={flat?._id} flat={flat} />
         ))}
       </div>
+
+      {/* Pagination */}
+      {!searchFlat && (
+        <div className="my-8">
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel="Next >"
+            previousLabel="< Prev"
+            onPageChange={({ selected }) => setPage(selected)}
+            pageRangeDisplayed={3}
+            pageCount={data.totalPages || 1}
+            forcePage={page}
+            containerClassName="flex justify-center gap-2 mt-6"
+            pageClassName="px-3 py-1 border rounded "
+            activeClassName="bg-primary text-white"
+            previousClassName={`px-3 py-1 border rounded bg-primary text-white ${
+              page === 0 ? "opacity-50 cursor-not-allowed bg-gray-300" : ""
+            }`}
+            nextClassName={`px-3 py-1 border rounded bg-primary text-white ${
+              page + 1 === data.totalPages
+                ? "opacity-50 cursor-not-allowed bg-gray-300"
+                : "bg-primary"
+            }`}
+            disabledClassName="opacity-50 cursor-not-allowed bg-gray-300"
+          />
+        </div>
+      )}
     </div>
   );
 };
