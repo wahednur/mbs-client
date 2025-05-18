@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import AgreementBtn from "../agreement/AgreementBtn";
 
 const FlatCard = ({ flat }) => {
   const apartment = flat?.apartment;
@@ -44,9 +45,7 @@ const FlatCard = ({ flat }) => {
           >
             Details
           </Link>
-          <button className="btn btn-filled" to={`/apertment/${flat?._id}`}>
-            Agreement{" "}
-          </button>
+          <AgreementBtn id={flat?._id} link={flat?._id} />
         </div>
       </div>
     </div>

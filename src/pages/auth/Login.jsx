@@ -37,7 +37,10 @@ const Login = () => {
           <div className="w-1/2 hidden md:block"></div>
           <div className="w-full md:w-1/2 bg-white p-10 rounded-lg shadow-lg text-center">
             <div className="flex flex-col items-center gap-2 mb-6">
-              <img src="/wbms.svg" className="h-12 mx-auto" alt="" />
+              <Link to={"/"}>
+                {" "}
+                <img src="/wbms.svg" className="h-12 mx-auto" alt="" />
+              </Link>
               <p>Welcome to WS BMS</p>
             </div>
             <h4 className="heading">User Login</h4>

@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashLayout from "../layouts/DashLayout";
 import RootLayout from "../layouts/RootLayout";
+import Agreement from "../pages/agreement/Agreement";
+import MyAgreements from "../pages/agreement/MyAgreements";
+import Payment from "../pages/agreement/Payment";
 import Apartment from "../pages/apartment/Apartment";
 import FlatDetails from "../pages/apartment/FlatDetails";
 import Login from "../pages/auth/Login";
@@ -11,6 +14,7 @@ import AddCoupon from "../pages/dashboard/admin/coupons/AddCoupon";
 import Coupons from "../pages/dashboard/admin/coupons/Coupons";
 import AddFlat from "../pages/dashboard/admin/flats/AddFlat";
 import FlatList from "../pages/dashboard/admin/flats/FlatList";
+import Users from "../pages/dashboard/admin/users/Users";
 import UserProfile from "../pages/dashboard/UserProfile";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/public/home/HomePage";
@@ -33,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: "/apertment/:id",
         element: <FlatDetails />,
+      },
+      {
+        path: "/agreement/:id",
+        element: <Agreement />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },
@@ -93,10 +105,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "Coupons",
+        path: "coupons",
         element: (
           <AdminRoutes>
             <Coupons />
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "users",
+        element: (
+          <AdminRoutes>
+            <Users />
           </AdminRoutes>
         ),
       },
@@ -105,6 +125,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UserProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-agreements",
+        element: (
+          <PrivateRoute>
+            <MyAgreements />
           </PrivateRoute>
         ),
       },

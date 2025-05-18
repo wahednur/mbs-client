@@ -9,7 +9,7 @@ const FlatDetails = () => {
   const { data: flat = {}, isLoading } = useQuery({
     queryKey: ["flat", id],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/flats/${id}`);
+      const { data } = await axiosCommon.get(`/flats-details/${id}`);
       return data;
     },
   });
@@ -25,7 +25,7 @@ const FlatDetails = () => {
           <div className=" ">
             <h2 className="text-xl">
               Apartment Name:{" "}
-              <span className="font-bold">{apartment.name}</span>
+              <span className="font-bold">{apartment?.name}</span>
             </h2>
 
             <div className="mt-6">

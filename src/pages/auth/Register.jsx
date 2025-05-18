@@ -54,7 +54,6 @@ const Register = () => {
     } catch (error) {
       toast.error(error.message);
     }
-    console.table({ name, photo: img_url, email, password });
   };
   if (loading) return <LoadingSpiner />;
   if (user?.email || loading) return navigate(from, { replace: true });
@@ -63,11 +62,13 @@ const Register = () => {
       <div className="container  rounded-lg">
         <div className="flex gap-6">
           <div className="w-1/2 hidden md:block">
-            <img
-              className="object-cover w-full rounded-lg"
-              src="/img/register.jpg"
-              alt=""
-            />
+            <Link to={"/"}>
+              <img
+                className="object-cover w-full rounded-lg"
+                src="/img/register.jpg"
+                alt=""
+              />
+            </Link>
           </div>
           <div className="w-full md:w-1/2 bg-white p-10 rounded-lg shadow-lg text-center flex flex-col gap-4 items-center justify-center">
             <div className="flex flex-col items-center gap-2 mb-6">

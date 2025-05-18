@@ -20,7 +20,7 @@ const DashSidebar = () => {
             {role} Dashboard
           </h2>{" "}
           {role === "admin" && <AdminMenu />}
-          {role === "user" && <UserMenu />}
+          {role === "user" || (role === "pending" && <UserMenu />)}
           {role === "member" && <MemberMenu />}
         </div>
       </div>

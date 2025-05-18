@@ -2,14 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
+import useRole from "../../hooks/useRole";
 import LoadingSpiner from "./../../components/shared/loading/LoadingSpiner";
 import FlatCard from "./FlatCard";
 const Apartment = () => {
+  const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
   const [searchFlat, setSearchFlat] = useState();
   const [page, setPage] = useState(0); // starts from 0
   const flatsPerPage = 6;
+  const [role] = useRole();
+  const navigate = useNavigate();
 
   const { data = {}, isLoading } = useQuery({
     queryKey: ["flats", page],

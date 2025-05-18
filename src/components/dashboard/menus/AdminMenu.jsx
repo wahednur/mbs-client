@@ -30,6 +30,14 @@ const AdminMenu = () => {
             Add Coupon
           </MenuItem>
         </SubMenu>
+        <SubMenu label="Users">
+          <MenuItem component={<NavLink to={"/dashboard/users"} />}>
+            Users
+          </MenuItem>
+          <MenuItem component={<NavLink to={"/dashboard/add-coupon"} />}>
+            User pending request
+          </MenuItem>
+        </SubMenu>
         <MenuItem> Documentation </MenuItem>
         <MenuItem> Calendar </MenuItem>
       </Menu>
