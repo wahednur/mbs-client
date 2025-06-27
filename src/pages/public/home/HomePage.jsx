@@ -1,6 +1,7 @@
 import GoogleMap from "../../../components/google-map/GoogleMap";
 import Button from "../../../components/shared/buttons/Button";
 import HomeSlider from "../../../components/slider-carousel/HomeSlider";
+import HomeApartment from "../../apartment/HomeApartment";
 import CouponDisplay from "../../dashboard/admin/coupons/CouponDisplay";
 
 const HomePage = () => {
@@ -39,12 +40,18 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      {/* Flat section start  */}
+      <div className="bg-primary/20 py-20 mt">
+        <HomeApartment />
+      </div>
+      {/* Flat section end  */}
       {/* Coupon section start  */}
       <div className="container mt">
         <CouponDisplay />
       </div>
 
       {/* Coupon section end  */}
+
       {/* Google map start  */}
       <div className="mt">
         <GoogleMap />

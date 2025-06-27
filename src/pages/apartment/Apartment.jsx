@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
 import ReactPaginate from "react-paginate";
 import { useNavigate } from "react-router-dom";
@@ -46,7 +47,7 @@ const Apartment = () => {
   return (
     <div className="container">
       {/* Search form */}
-      <div className="flex items-center justify-center mt-10">
+      <div className="flex items-center justify-center mt-10 bg-white py-5 rounded-md">
         <form onSubmit={handleSearch}>
           <div className="flex justify-between items-center gap-6">
             <input
@@ -80,8 +81,8 @@ const Apartment = () => {
         <div className="my-8">
           <ReactPaginate
             breakLabel="..."
-            nextLabel="Next >"
-            previousLabel="< Prev"
+            nextLabel={<FaArrowRight />}
+            previousLabel={<FaArrowLeft />}
             onPageChange={({ selected }) => setPage(selected)}
             pageRangeDisplayed={3}
             pageCount={data.totalPages || 1}
@@ -89,10 +90,10 @@ const Apartment = () => {
             containerClassName="flex justify-center gap-2 mt-6 text-xl"
             pageClassName="px-3 py-1 border rounded cursor-pointer hover:bg-primary duration-300 hover:text-white  "
             activeClassName="bg-primary text-white "
-            previousClassName={`px-3 py-1 border rounded bg-primary text-white cursor-pointer hover:bg-primary duration-300 hover:text-white ${
+            previousClassName={`px-3 py-1 flex justify-center items-center border rounded bg-primary text-white cursor-pointer hover:bg-primary duration-300 hover:text-white ${
               page === 0 ? "opacity-50 cursor-not-allowed bg-gray-300" : ""
             }`}
-            nextClassName={`px-3 py-1 border rounded bg-primary text-white cursor-pointer hover:bg-primary duration-300 hover:text-white ${
+            nextClassName={`px-3 py-1 flex justify-center items-center border rounded bg-primary text-white cursor-pointer hover:bg-primary duration-300 hover:text-white ${
               page + 1 === data.totalPages
                 ? "opacity-50 cursor-not-allowed bg-gray-300"
                 : "bg-primary"
