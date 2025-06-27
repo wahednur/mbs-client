@@ -5,13 +5,13 @@ const FlatCard = ({ flat }) => {
   const apartment = flat?.apartment;
   console.log(apartment);
   return (
-    <div className="border border-primary rounded-lg overflow-hidden">
+    <div className=" rounded-lg overflow-hidden group shadow-xl hover:shadow-2xl duration-300 hover:scale-3d hover:scale-105">
       <img
         className="aspect-video object-cover object-center"
         src={flat?.image}
         alt=""
       />
-      <div className="flex flex-col gap-3 mt-5 p-5">
+      <div className="flex flex-col gap-3 p-5 group-hover:bg-primary/10 duration-300">
         <div className="flex flex-col space-y-3">
           <p className=" h-10">
             Apartment Name: <span className="font-bold">{apartment?.name}</span>

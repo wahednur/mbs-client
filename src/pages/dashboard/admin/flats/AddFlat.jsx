@@ -69,6 +69,11 @@ const AddFlat = () => {
       form.reset();
       setPrevImg("");
     } catch (error) {
+      const errorMsg =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Something went wrong";
+      toast.error(errorMsg);
       console.log(error);
     }
   };

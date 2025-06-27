@@ -16,6 +16,7 @@ const FlatList = () => {
     },
     // enabled: user?.email,
   });
+  console.log(flats);
   if (isLoading) return <LoadingSpiner />;
   return (
     <div className="w-full bg-white p-5 overflow-auto">

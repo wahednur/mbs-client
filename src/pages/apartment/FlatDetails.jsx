@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import LoadingSpiner from "../../components/shared/loading/LoadingSpiner";
 import { axiosCommon } from "../../hooks/useAxiosCommon";
+import AgreementBtn from "../agreement/AgreementBtn";
 
 const FlatDetails = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const FlatDetails = () => {
       return data;
     },
   });
-
+  console.log(flat);
   const apartment = flat?.apartment;
   if (isLoading) return <LoadingSpiner />;
   return (
@@ -28,8 +29,8 @@ const FlatDetails = () => {
               <span className="font-bold">{apartment?.name}</span>
             </h2>
 
-            <div className="mt-6">
-              <p className="bg-white text-lg font-semibold">Address</p>
+            <div className="mt-6  bg-white p-4">
+              <p className=" text-lg font-semibold">Address</p>
               <div className="flex flex-col md:flex-row gap-6">
                 <p>
                   Area: <span className="font-semibold">{apartment?.area}</span>
@@ -46,8 +47,8 @@ const FlatDetails = () => {
               </div>
               <hr className=" my-4 block w-full text-gray-400" />
             </div>
-            <div className="mt-6">
-              <p className="bg-white text-lg font-semibold">Apartment Status</p>
+            <div className="mt-6  bg-white p-4">
+              <p className=" text-lg font-semibold">Apartment Status</p>
               <div className="flex flex-col md:flex-row gap-6">
                 <p>
                   Gas: <span className="font-semibold">{apartment?.gas}</span>
@@ -69,8 +70,8 @@ const FlatDetails = () => {
               </div>
               <hr className=" my-4 block w-full text-gray-400" />
             </div>
-            <div className="mt-6">
-              <p className="bg-white text-lg font-semibold">Flat Status</p>
+            <div className="mt-6 bg-white p-4">
+              <p className=" text-lg font-semibold">Flat Status</p>
               <div className="flex flex-col md:flex-row gap-6">
                 <p>
                   Bed: <span className="font-semibold">{flat?.bed}</span>
@@ -99,8 +100,8 @@ const FlatDetails = () => {
 
               <hr className=" my-4 block w-full text-gray-400" />
             </div>
-            <div className="mt-6">
-              <p className="bg-white text-lg font-semibold">Description</p>
+            <div className="mt-6 bg-green-50 p-4">
+              <p className=" text-lg font-semibold">Description</p>
               <div className="flex flex-col md:flex-row gap-6">
                 <p>
                   <span className="font-semibold">
@@ -115,7 +116,7 @@ const FlatDetails = () => {
                 Rent:{" "}
                 <span className="font-bold text-primary">{flat?.rent}</span>
               </h2>
-              <button className="btn btn-filled">Agreement </button>
+              <AgreementBtn id={flat?._id} link={flat?._id} />
             </div>
           </div>
         </div>
