@@ -15,6 +15,10 @@ const AddFlat = () => {
   const [apartment, setApartment] = useState("");
   const [apartmentId, setApartmentId] = useState("");
   const [prevImg, setPrevImg] = useState("");
+  const [selectedApartment, setSelectedApartment] = useState(null);
+  const [selectedFloor, setSelectedFloor] = useState(null);
+  const [selectedFlat, setSelectedFlat] = useState(null);
+  console.log(selectedFloor?.floorNumber);
   const { data: apartments = [] } = useQuery({
     queryKey: ["apartments"],
     queryFn: async () => {
@@ -24,9 +28,11 @@ const AddFlat = () => {
   });
 
   const { data: apart = {} } = useQuery({
-    queryKey: ["apartment", apartmentId],
+    queryKey: ["apartment"],
     queryFn: async () => {
-      const { data } = await axiosCommon.get(`/apartment/${apartmentId}`);
+      const { data } = await axiosCommon.get(
+        `/apartment/${selectedApartment?._id}`
+      );
       return data;
     },
     // enabled: id,
@@ -35,9 +41,9 @@ const AddFlat = () => {
   const handleAddFlat = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const floor = form.floor.value;
-    const block = form.block.value;
-    const rent = form.rent.value;
+    const floor = selectedFloor?.floorNumber;
+    const flat = selectedFlat;
+    const rent = selectedFlat.rent;
     const bed = form.bed.value;
     const bathroom = form.bathroom.value;
     const balcony = form.balcony.value;
@@ -46,9 +52,10 @@ const AddFlat = () => {
     const image = await imageUpload(photo);
 
     const newFlat = {
-      apartment: apart,
+      apartId: apart?._id,
+      // apartment: apart,
       floor,
-      block,
+      flat,
       rent,
       bed,
       bathroom,
@@ -66,7 +73,6 @@ const AddFlat = () => {
     }
   };
 
-  console.log(apartmentId, apartment);
   return (
     <div className="bg-white p-5 rounded-xl">
       <h1 className="dash-title">Add Flat</h1>
@@ -78,42 +84,83 @@ const AddFlat = () => {
                 <div className="collum">
                   <label htmlFor="apartment">Apartment</label>
                   <select
-                    className="frm-ctr"
                     onChange={(e) => {
-                      const selectId = e.target.value;
-                      setApartmentId(selectId);
-                      const selectApartment = apartments.find(
-                        (app) => app._id === selectId
+                      const apartmentId = e.target.value;
+                      const apartment = apartments.find(
+                        (a) => a._id === apartmentId
                       );
-                      setApartment(selectApartment?.name);
+                      setSelectedApartment(apartment);
+                      setSelectedFloor(null);
+                      setSelectedFlat(null);
                     }}
+                    className="frm-ctr"
                   >
-                    <option value="">Select apartment</option>
-                    {apartments.map((app) => (
-                      <option key={app._id} value={app?._id}>
-                        {app?.name}
+                    <option value="">Select Apartment</option>
+                    {apartments.map((apt) => (
+                      <option key={apt._id} value={apt._id}>
+                        {apt.name}
                       </option>
                     ))}
                   </select>
                 </div>
                 <div className="collum">
                   <label htmlFor="floor">Floor Name</label>
-                  <input
-                    type="text"
-                    placeholder="Floor Name"
-                    className="frm-ctr"
-                    name="floor"
-                  />
+                  {selectedApartment && (
+                    <select
+                      onChange={(e) => {
+                        const floorNo = parseInt(e.target.value);
+                        const floor = selectedApartment.floors.find(
+                          (f) => f.floorNumber === floorNo
+                        );
+                        setSelectedFloor(floor);
+                        setSelectedFlat(null);
+                      }}
+                      className="frm-ctr"
+                    >
+                      <option value="">Select Floor</option>
+                      {selectedApartment.floors.map((floor) => (
+                        <option
+                          key={floor.floorNumber}
+                          value={floor.floorNumber}
+                        >
+                          Floor {floor.floorNumber}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="collum">
-                  <label htmlFor="block">Block</label>
-                  <input type="text" name="block" className="frm-ctr" />
+                  <label htmlFor="block">Flat Number</label>
+                  {selectedFloor && (
+                    <select
+                      onChange={(e) => {
+                        const flatNo = e.target.value;
+                        const flat = selectedFloor.flats.find(
+                          (f) => f.flatNo === flatNo
+                        );
+                        setSelectedFlat(flat);
+                      }}
+                      className="frm-ctr"
+                    >
+                      <option value="">Select Flat</option>
+                      {selectedFloor.flats.map((flat) => (
+                        <option key={flat.flatNo} value={flat.flatNo}>
+                          {flat.flatNo}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                 </div>
                 <div className="collum">
-                  <label htmlFor="rent">Rent</label>
-                  <input type="number" name="rent" className="frm-ctr" />
+                  {selectedFlat && (
+                    <div className="p-3 text-2xl">
+                      <p>
+                        <strong>Rent:</strong> {selectedFlat.rent} BDT
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-col md:flex-row gap-6">

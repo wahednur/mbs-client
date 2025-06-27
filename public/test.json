@@ -1,0 +1,16 @@
+{
+  "_id": "685efbefe110d0e46fe063c5",
+  "apartId": "685ef144e110d0e46fe063c2",
+  "floor": 2,
+  "flat": {
+    "flatNo": "2A",
+    "space": 1500,
+    "rent": 65000
+  },
+  "rent": 65000,
+  "bed": "3",
+  "bathroom": "3",
+  "balcony": "2",
+  "store": "1",
+  "image": "https://i.ibb.co/Q3yz9cm6/flat-2.jpg"
+}

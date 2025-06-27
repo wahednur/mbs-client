@@ -17,6 +17,8 @@ const AddApartment = () => {
   const [lift, setLift] = useState("");
   const [generator, setGenerator] = useState("");
   const [prevImg, setPrevImg] = useState("");
+  const [floors, setFloors] = useState([]);
+  const [totalFlats, setTotalFlats] = useState(0);
 
   const cityCorps = [
     ...new Set(cities.map((feature) => feature.city_corporation)),
@@ -28,24 +30,22 @@ const AddApartment = () => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
-    const flatQty = form.flatQty.value;
     const state = form.state.value;
-    // const cityCorporation = cityCorp
-    // const area = area
+
     const road = form.road.value;
     const apartmentNo = form.apartmentNo.value;
     const description = form.description.value;
-    // const gas = form.name.value;
-    // const elec = form.name.value;
-    // const lift = form.name.value;
     const garage = form.garage.value;
+    const service = form.service.value;
     const photo = form.image.files[0];
     const image = await imageUpload(photo);
-    // const ganarator = form.name.value;
+    availableFlat: totalFlats;
 
     const newApartment = {
       name,
-      flatQty,
+      totalFlats,
+      availableFlat,
+      floors,
       state,
       cityCorp,
       area,
@@ -78,6 +78,52 @@ const AddApartment = () => {
     }
   };
 
+  const handleFloorGenerate = (floorCount) => {
+    const temp = Array.from({ length: floorCount }, (_, i) => ({
+      floorNumber: i + 1,
+      flats: [],
+    }));
+    setFloors(temp);
+  };
+
+  const updateFlatCount = (floorNumber, flatCount) => {
+    const updatedFloors = floors.map((floor) =>
+      floor.floorNumber === floorNumber
+        ? {
+            ...floor,
+            flats: Array.from({ length: flatCount }, (_, i) => ({
+              flatNo: `${floorNumber}${String.fromCharCode(65 + i)}`,
+              space: 0,
+              rent: 0,
+            })),
+          }
+        : floor
+    );
+
+    setFloors(updatedFloors);
+    calculateTotalFlats(updatedFloors);
+  };
+
+  const updateFlatDetail = (floorNumber, flatIdx, key, value) => {
+    setFloors((prev) =>
+      prev.map((floor) =>
+        floor.floorNumber === floorNumber
+          ? {
+              ...floor,
+              flats: floor.flats.map((flat, i) =>
+                i === flatIdx ? { ...flat, [key]: value } : flat
+              ),
+            }
+          : floor
+      )
+    );
+  };
+
+  const calculateTotalFlats = (floors) => {
+    const count = floors.reduce((sum, floor) => sum + floor.flats.length, 0);
+    setTotalFlats(count);
+  };
+  console.log(totalFlats);
   return (
     <div className="w-full bg-white p-5 rounded-xl">
       <DashSiteTitle title={"Add apartment"} />
@@ -97,16 +143,7 @@ const AddApartment = () => {
                 required
               />
             </div>
-            <div className="collum mb-5">
-              <label htmlFor="flatQty">Total Flat Number</label>
-              <input
-                type="number"
-                name="flatQty"
-                placeholder="Enter your total flat number"
-                className="frm-ctr"
-                required
-              />
-            </div>
+
             <div className="p-4 border rounded-xl border-primary/30 relative top-5">
               <p className="absolute -top-4 left-3 bg-white px-5">Address</p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -180,6 +217,81 @@ const AddApartment = () => {
                 required
               ></textarea>
             </div>
+            <div className="collum mb-5">
+              <label htmlFor="totalFloor">Total Floor</label>
+              <input
+                type="number"
+                name="totalFloor"
+                placeholder="Enter total floor number"
+                className="frm-ctr"
+                onChange={(e) => handleFloorGenerate(parseInt(e.target.value))}
+                required
+              />
+            </div>
+
+            <div className="grid grid-cols-1 gap-6">
+              {floors.map((floor, idx) => (
+                <div key={idx} className="border p-3 rounded mb-3">
+                  <h4>Floor {floor.floorNumber}</h4>
+                  <input
+                    type="number"
+                    placeholder="Number of flats"
+                    className="frm-ctr mb-2"
+                    onChange={(e) =>
+                      updateFlatCount(
+                        floor.floorNumber,
+                        parseInt(e.target.value)
+                      )
+                    }
+                  />
+                  {floor.flats.map((flat, fIdx) => (
+                    <div key={fIdx} className="flex gap-2 mb-1">
+                      <input
+                        type="text"
+                        placeholder="Flat No"
+                        className="frm-ctr"
+                        value={flat.flatNo}
+                        onChange={(e) =>
+                          updateFlatDetail(
+                            floor.floorNumber,
+                            fIdx,
+                            "flatNo",
+                            e.target.value
+                          )
+                        }
+                      />
+
+                      <input
+                        type="number"
+                        placeholder="Space (sqft)"
+                        className="frm-ctr"
+                        onChange={(e) =>
+                          updateFlatDetail(
+                            floor.floorNumber,
+                            fIdx,
+                            "space",
+                            parseInt(e.target.value)
+                          )
+                        }
+                      />
+                      <input
+                        type="number"
+                        placeholder="Rent"
+                        className="frm-ctr"
+                        onChange={(e) =>
+                          updateFlatDetail(
+                            floor.floorNumber,
+                            fIdx,
+                            "rent",
+                            parseInt(e.target.value)
+                          )
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
             <div className="flex gap-6">
               <div className="collum">
                 <label htmlFor="gas">Gas</label>
@@ -209,7 +321,7 @@ const AddApartment = () => {
               <div className="collum">
                 <label htmlFor="generator">Generator</label>
                 <select
-                  name="ganarator"
+                  name="generator"
                   onChange={(e) => setGenerator(e.target.value)}
                   className="frm-ctr"
                 >
@@ -238,6 +350,16 @@ const AddApartment = () => {
                   required
                 />
               </div>
+            </div>
+            <div className="collum">
+              <label htmlFor="service">Service Charge</label>
+              <input
+                type="number"
+                className="frm-ctr"
+                name="service"
+                placeholder="Service charge"
+                required
+              />
             </div>
           </div>
           <div className="flex-1">

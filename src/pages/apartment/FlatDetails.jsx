@@ -13,7 +13,7 @@ const FlatDetails = () => {
       return data;
     },
   });
-  console.log(flat);
+
   const apartment = flat?.apartment;
   if (isLoading) return <LoadingSpiner />;
   return (
@@ -92,8 +92,8 @@ const FlatDetails = () => {
                   <span className="font-semibold">{flat?.floor}</span>
                 </p>
                 <p>
-                  Block:{"  "}
-                  <span className="font-semibold">{flat?.block}</span>
+                  Flat Number:{"  "}
+                  <span className="font-semibold">{flat?.flat?.flatNo}</span>
                 </p>
               </div>
 

@@ -27,7 +27,7 @@ const ApartmentList = () => {
             <th className="sm-w">City Corporation</th>
             <th className="sm-w">Area</th>
             <th className="sm-w">Road</th>
-            <th className="sm-w">Flat No</th>
+            <th className="sm-w">Total Flat</th>
             <th className="sm-w">Availabe Flat</th>
             <th className="sm-w">Garage No</th>
             <th className="sm-w">Availabe Garage</th>
@@ -35,32 +35,42 @@ const ApartmentList = () => {
           </tr>
         </thead>
         <tbody className="w-full">
-          {apartments.map((app, idx) => (
-            <tr
-              className="flex w-full text-left gap-2 even:bg-gray-100 justify-center items-center p-2"
-              key={app._id}
-            >
-              <td className="w-12">{idx + 1}</td>
-              <td className="flex-1">{app.name}</td>
-              <td className="sm-w">{app?.cityCorp}</td>
-              <td className="sm-w">{app?.area}</td>
-              <td className="sm-w">{app?.road}</td>
-              <td className="sm-w">{app?.flatQty}</td>
-              <td className="sm-w">{app?.flatQty}</td>
-              <td className="sm-w">{app?.garage}</td>
-              <td className="sm-w">{app?.garage}</td>
-              <td className="sm-w">
-                <div className="flex text-white">
-                  <button className="flex justify-center items-center px-4 py-2 bg-primary hover:bg-secondary duration-300 cursor-pointer">
-                    <FaEdit />
-                  </button>
-                  <button className="flex justify-center items-center px-4 py-2 bg-red-500 hover:bg-secondary duration-300 cursor-pointer">
-                    <FaTrashAlt />
-                  </button>
-                </div>
+          {apartments.length > 0 ? (
+            <>
+              {apartments.map((app, idx) => (
+                <tr
+                  className="flex w-full text-left gap-2 even:bg-gray-100 justify-center items-center p-2"
+                  key={app._id}
+                >
+                  <td className="w-12">{idx + 1}</td>
+                  <td className="flex-1">{app.name}</td>
+                  <td className="sm-w">{app?.cityCorp}</td>
+                  <td className="sm-w">{app?.area}</td>
+                  <td className="sm-w">{app?.road}</td>
+                  <td className="sm-w">{app?.totalFlats}</td>
+                  <td className="sm-w">{app?.availableFlat}</td>
+                  <td className="sm-w">{app?.garage}</td>
+                  <td className="sm-w">{app?.garage}</td>
+                  <td className="sm-w">
+                    <div className="flex text-white">
+                      <button className="flex justify-center items-center px-4 py-2 bg-primary hover:bg-secondary duration-300 cursor-pointer">
+                        <FaEdit />
+                      </button>
+                      <button className="flex justify-center items-center px-4 py-2 bg-red-500 hover:bg-secondary duration-300 cursor-pointer">
+                        <FaTrashAlt />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </>
+          ) : (
+            <tr>
+              <td className="col-span-7 w-full d-vh flex justify-center items-center">
+                No Apartment Added
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

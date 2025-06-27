@@ -3,6 +3,7 @@ import AgreementBtn from "../agreement/AgreementBtn";
 
 const FlatCard = ({ flat }) => {
   const apartment = flat?.apartment;
+  console.log(apartment);
   return (
     <div className="border border-primary rounded-lg overflow-hidden">
       <img
@@ -18,7 +19,7 @@ const FlatCard = ({ flat }) => {
           <p>
             Rent:{" "}
             <span className="font-black text-2xl text-primary">
-              {flat?.rent} BDT
+              {flat?.flat?.rent} BDT
             </span>
           </p>
         </div>
@@ -27,7 +28,7 @@ const FlatCard = ({ flat }) => {
             Floor: <span className="font-bold">{flat?.floor}</span>
           </p>
           <p>
-            Block: <span className="font-bold">{flat?.block}</span>
+            Flat Number: <span className="font-bold">{flat?.flat?.flatNo}</span>
           </p>
         </div>
         <div className="flex justify-between items-center">

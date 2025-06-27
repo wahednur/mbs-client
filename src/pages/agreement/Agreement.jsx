@@ -1,13 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import LoadingSpiner from "../../components/shared/loading/LoadingSpiner";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Agreement = () => {
   const { id } = useParams();
   const axisoSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [finalRent, setFinalRent] = useState();
+  const axiosCommon = useAxiosCommon();
   const { data: flat = {}, isLoading } = useQuery({
     queryKey: ["flat", id],
     queryFn: async () => {
@@ -15,6 +20,37 @@ const Agreement = () => {
       return data;
     },
   });
+
+  const handleCoupon = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const couponCode = form.couponCode.value.trim();
+
+    try {
+      const { data: coupon } = await axiosCommon.get(`/coupons/${couponCode}`);
+
+      if (!coupon || !coupon.coupon) {
+        toast.error("Invalid coupon code");
+        return;
+      }
+
+      let discountAmount = 0;
+
+      if (coupon.discountType === "percentage") {
+        discountAmount = (flat?.rent * coupon.discount) / 100;
+      } else if (coupon.discountType === "fixed") {
+        discountAmount = coupon.discount;
+      }
+
+      const newRent = Math.max(0, flat?.rent - discountAmount);
+
+      setAppliedCoupon(coupon);
+      setFinalRent(newRent);
+      toast.success(`Coupon Applied! You saved ${discountAmount} BDT`);
+    } catch (err) {
+      toast.error("Invalid or expired coupon", err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,8 +65,17 @@ const Agreement = () => {
       return toast.error("You must agree to the terms and conditions.");
     }
 
+    if (finalRent >= 0) {
+      setFinalRent(flat?.rent);
+    }
+
     const agreementInfo = {
-      flat,
+      name: flat?.apartment?.name,
+      area: flat?.apartment?.area,
+      road: flat?.apartment?.road,
+      apartmentNo: flat?.apartment?.apartmentNo,
+      rent: finalRent || flat?.rent,
+
       user: {
         name,
         address,
@@ -43,8 +88,6 @@ const Agreement = () => {
 
     navigate("/payment", { state: agreementInfo });
   };
-
-  console.log(flat);
 
   if (isLoading) return <LoadingSpiner />;
   return (
@@ -159,9 +202,37 @@ const Agreement = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-6 bg-primary  p-5 text-white">
-                <h2 className="text-2xl font-bold">Monthly Rend:</h2>
-                <h2 className="text-2xl font-bold">{flat?.rent}/month</h2>
+              <div className="flex flex-col gap-6  p-5">
+                <div className="flex justify-between">
+                  <h2 className="text-2xl font-bold">Monthly Rent:</h2>
+                  <h2 className="text-2xl font-bold bg-primar">
+                    {flat?.rent}/month
+                  </h2>
+                </div>
+                <div>
+                  {" "}
+                  {appliedCoupon && (
+                    <div className="mt-4 text-green-600">
+                      Coupon <strong>{appliedCoupon.code}</strong> applied!
+                      <br />
+                      New Rent: <strong>{finalRent} BDT</strong>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div>
+                <h4 className="text-2xl font-bold">Coupon</h4>
+                <form onSubmit={handleCoupon}>
+                  <input
+                    type="text"
+                    name="couponCode"
+                    placeholder="Enter valid coupon"
+                    className="frm-ctr"
+                  />
+                  <button type="submit" className="btn btn-filled mt-5">
+                    Apply
+                  </button>
+                </form>
               </div>
             </div>
           </div>

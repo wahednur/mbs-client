@@ -115,8 +115,8 @@ const Payment = () => {
     <div className="max-w-xl mx-auto p-10 bg-white rounded-lg mt-10 shadow-lg">
       <h2 className="text-2xl font-bold text-primary mb-4">Payment Page</h2>
       <p className="mb-4">
-        You're about to pay <strong>{agreementInfo?.flat?.rent} BDT</strong> for{" "}
-        <strong>{agreementInfo?.flat?.apartment?.name}</strong>.
+        You're about to pay <strong>{agreementInfo?.rent} BDT</strong> for{" "}
+        <strong>{agreementInfo?.name}</strong>.
       </p>
 
       <Elements stripe={stripePromise}>

@@ -122,6 +122,10 @@
   @apply bg-white/30;
 }
 
+.d-vh {
+  @apply min-h-[calc(100vh-260px)];
+}
+
 a.ps-menu-button.ps-open,
 .css-16jesut > .ps-menu-button:hover,
 .css-1t8x7v1 > .ps-menu-button:hover {

@@ -28,13 +28,13 @@ const ApartmentInfo = ({ apart }) => {
       </p>
       <p className="flex gap-5 items-center">
         <p>
-          <span>Total Flat: </span> {apart?.flatQty}
+          <span>Total Flat: </span> {apart?.totalFlats}
         </p>
         <p className="bg-success px-4 py-3">
           <span className="font-bold text-white">Availabe Flat: </span>{" "}
           <span className="text-2xl font-black text-white">
             {" "}
-            {apart?.availableFlat}
+            {apart?.totalFlats}
           </span>
         </p>
       </p>
