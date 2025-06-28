@@ -4,12 +4,14 @@ import Button from "../../components/shared/buttons/Button";
 import LoadingSpiner from "../../components/shared/loading/LoadingSpiner";
 import SocialLogin from "../../components/social-login/SocialLogin";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 
 const Login = () => {
   const { user, loading, loginUser } = useAuth();
+  const [role] = useRole();
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location?.state?.form?.pathname || "/";
+  const from = location?.state?.form?.pathname || role ? "/dashboard" : "/";
 
   const hadleLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
       navigate(from, { replace: true });
       toast.success(
         <p>
-          <span>{user?.displayName} </span>Loging successfully
+          <span>{user?.displayName} </span>Login successfully
         </p>
       );
     } catch (error) {

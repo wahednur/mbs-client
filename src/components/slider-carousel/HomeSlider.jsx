@@ -28,7 +28,7 @@ const HomeSlider = () => {
       <SwiperSlide>
         <div
           style={{ backgroundImage: `url(${img1})` }}
-          className="w-full aspect-[1520/500] bg-cover bg-center"
+          className="w-full aspect-slider bg-cover bg-center"
         >
           <div className="container h-full">
             <div className="flex flex-col justify-center items-center h-full">
@@ -49,7 +49,7 @@ const HomeSlider = () => {
       <SwiperSlide>
         <div
           style={{ backgroundImage: `url(${img2})` }}
-          className="w-full aspect-[1520/500] bg-cover bg-center"
+          className="w-full aspect-slider bg-cover bg-center"
         >
           <div className="container h-full">
             <div className="flex flex-col justify-center items-center h-full">
@@ -70,7 +70,7 @@ const HomeSlider = () => {
       <SwiperSlide>
         <div
           style={{ backgroundImage: `url(${img3})` }}
-          className="w-full aspect-[1520/500] bg-cover bg-center"
+          className="w-full aspect-slider bg-cover bg-center"
         >
           <div className="container h-full">
             <div className="flex flex-col justify-center items-center h-full">
@@ -91,7 +91,7 @@ const HomeSlider = () => {
       <SwiperSlide>
         <div
           style={{ backgroundImage: `url(${img4})` }}
-          className="w-full aspect-[1520/500] bg-cover bg-center"
+          className="w-full aspect-slider bg-cover bg-center"
         >
           <div className="container h-full">
             <div className="flex flex-col justify-center items-center h-full">
@@ -112,7 +112,7 @@ const HomeSlider = () => {
       <SwiperSlide>
         <div
           style={{ backgroundImage: `url(${img5})` }}
-          className="w-full aspect-[1520/500] bg-cover bg-center"
+          className="w-full aspect-slider bg-cover bg-center"
         >
           <div className="container h-full">
             <div className="flex flex-col justify-center items-center h-full">

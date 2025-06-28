@@ -9,7 +9,7 @@ const UserProfile = () => {
       <div className="w-full md:w-1/2 bg-white rounded-2xl p-8">
         <div className="">
           <img
-            className="w-full md:w-8/12 mx-auto rounded-full"
+            className="w-full md:w-8/12 aspect-square mx-auto rounded-full"
             src={user?.photoURL}
             alt=""
           />

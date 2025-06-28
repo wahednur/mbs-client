@@ -14,6 +14,8 @@
   /* Fonts  */
   --font-roboto: var(--roboto);
   --font-poppins: var(--poppins);
+
+  --aspect-slider: 1600/800;
 }
 
 :root {

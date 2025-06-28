@@ -29,10 +29,10 @@ const FlatList = () => {
             <th className="sm-w">City Corporation</th>
             <th className="sm-w">Area</th>
             <th className="sm-w">Road</th>
+            <th className="sm-w">Apartment No</th>
             <th className="sm-w">Flat No</th>
-            <th className="sm-w">Availabe Flat</th>
-            <th className="sm-w">Garage No</th>
-            <th className="sm-w">Availabe Garage</th>
+            <th className="sm-w">Available Garage</th>
+            <th className="sm-w">Status</th>
             <th className="sm-w">Action</th>
           </tr>
         </thead>
@@ -47,10 +47,11 @@ const FlatList = () => {
               <td className="sm-w">{flat?.apartment?.cityCorp}</td>
               <td className="sm-w">{flat?.apartment?.area}</td>
               <td className="sm-w">{flat?.apartment?.road}</td>
-              <td className="sm-w">{flat?.apartment?.flatQty}</td>
-              <td className="sm-w">{flat?.apartment?.flatQty}</td>
+              <td className="sm-w">{flat?.apartment?.apartmentNo}</td>
+              <td className="sm-w">{flat?.flat?.flatNo}</td>
+
               <td className="sm-w">{flat?.apartment?.garage}</td>
-              <td className="sm-w">{flat?.apartment?.garage}</td>
+              <td className="sm-w">No Rent</td>
               <td className="sm-w">
                 <div className="flex text-white">
                   <button className="flex justify-center items-center px-4 py-2 bg-primary hover:bg-secondary duration-300 cursor-pointer">
