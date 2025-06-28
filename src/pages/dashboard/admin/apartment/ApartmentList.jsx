@@ -48,7 +48,9 @@ const ApartmentList = () => {
                   <td className="sm-w">{app?.area}</td>
                   <td className="sm-w">{app?.road}</td>
                   <td className="sm-w">{app?.totalFlats}</td>
-                  <td className="sm-w">{app?.availableFlat}</td>
+                  <td className="sm-w">
+                    {app?.availableFlat ? app?.availableFlat : app?.totalFlats}
+                  </td>
                   <td className="sm-w">{app?.garage}</td>
                   <td className="sm-w">{app?.garage}</td>
                   <td className="sm-w">

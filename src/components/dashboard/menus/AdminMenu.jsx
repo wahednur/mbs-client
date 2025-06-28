@@ -4,7 +4,7 @@ const AdminMenu = () => {
   return (
     <Sidebar width="280" backgroundColor="#2e343f">
       <Menu>
-        <MenuItem> Overview </MenuItem>
+        <MenuItem component={<NavLink to={"/dashboard"} />}>Overview</MenuItem>
         <SubMenu label="Apartment">
           <MenuItem component={<NavLink to={"/dashboard/apartment-list"} />}>
             Apartments List

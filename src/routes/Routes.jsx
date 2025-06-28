@@ -15,6 +15,7 @@ import Coupons from "../pages/dashboard/admin/coupons/Coupons";
 import AddFlat from "../pages/dashboard/admin/flats/AddFlat";
 import FlatList from "../pages/dashboard/admin/flats/FlatList";
 import Users from "../pages/dashboard/admin/users/Users";
+import DashboardOverview from "../pages/dashboard/overviews/DashboardOverview";
 import UserProfile from "../pages/dashboard/UserProfile";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/public/home/HomePage";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        index: true,
+        element: <DashboardOverview />,
+      },
       {
         path: "add-apartment",
         element: (

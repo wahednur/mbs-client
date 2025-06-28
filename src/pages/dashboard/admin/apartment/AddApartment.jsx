@@ -19,7 +19,9 @@ const AddApartment = () => {
   const [prevImg, setPrevImg] = useState("");
   const [floors, setFloors] = useState([]);
   const [totalFlats, setTotalFlats] = useState(0);
+  // const [availableFlat, setAvailableFlat] = useState(0);
 
+  // const availableFlat = totalFlats;
   const cityCorps = [
     ...new Set(cities.map((feature) => feature.city_corporation)),
   ];
@@ -39,12 +41,10 @@ const AddApartment = () => {
     const service = form.service.value;
     const photo = form.image.files[0];
     const image = await imageUpload(photo);
-    availableFlat: totalFlats;
 
     const newApartment = {
       name,
       totalFlats,
-      availableFlat,
       floors,
       state,
       cityCorp,
@@ -55,6 +55,7 @@ const AddApartment = () => {
       gas,
       electricity,
       generator,
+      service,
       lift,
       garage,
       image,
@@ -121,9 +122,10 @@ const AddApartment = () => {
 
   const calculateTotalFlats = (floors) => {
     const count = floors.reduce((sum, floor) => sum + floor.flats.length, 0);
+    // setAvailableFlat(count);
     setTotalFlats(count);
   };
-  console.log(totalFlats);
+  // console.log(availableFlat ? totalFlats : "no");
   return (
     <div className="w-full bg-white p-5 rounded-xl">
       <DashSiteTitle title={"Add apartment"} />
@@ -166,7 +168,9 @@ const AddApartment = () => {
                     className="frm-ctr"
                   >
                     {cityCorps.map((city, idx) => (
-                      <option key={idx}>{city}</option>
+                      <option key={idx} value={city}>
+                        {city}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -180,7 +184,9 @@ const AddApartment = () => {
                     {cities
                       .filter((f) => f.city_corporation === cityCorp)
                       .map((area) => (
-                        <option key={area.name}>{area.name}</option>
+                        <option key={area.name} value={area.name}>
+                          {area.name}
+                        </option>
                       ))}
                   </select>
                 </div>
