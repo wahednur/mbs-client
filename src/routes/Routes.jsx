@@ -16,7 +16,7 @@ import AddFlat from "../pages/dashboard/admin/flats/AddFlat";
 import FlatList from "../pages/dashboard/admin/flats/FlatList";
 import Users from "../pages/dashboard/admin/users/Users";
 import DashboardOverview from "../pages/dashboard/overviews/DashboardOverview";
-import UserProfile from "../pages/dashboard/UserProfile";
+import UserProfile from "../pages/dashboard/user/UserProfile";
 import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/public/home/HomePage";
 import AdminRoutes from "./AdminRoutes";
